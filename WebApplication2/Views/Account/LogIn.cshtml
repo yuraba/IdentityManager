@@ -1,0 +1,57 @@
+@model WebApplication2.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "_Layout";
+}
+
+<h1 class="text-info">Log In</h1>
+<form asp-controller="Account" asp-action="LogIn" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" role="form">
+    
+    <hr/>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Email" class="col-md-2"></label>
+        <div class="col-md-10">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div> 
+    
+    <div class="form-group">
+        <label asp-for="Password" class="col-md-2"></label>
+        <div class="col-md-10">
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div> 
+    <div class="form-group">
+        <div class=" col-md-2">
+            <div class="custom-checkbox">
+                <label asp-for="RememberMe">
+                    <input asp-for="RememberMe"/>
+                    @Html.DisplayNameFor(m=>m.RememberMe)
+                </label>
+            </div>
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-success">Log In</button>
+        </div>
+    </div>
+    <p>
+        <a asp-action="Register">Register as a new user?</a>
+    </p>
+    <p>
+        <a asp-action="">Forgot password?</a>
+    </p>
+    
+</form>
+
+@section Scripts{
+    @{ 
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
